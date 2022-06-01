@@ -1,6 +1,6 @@
 require 'minitest/autorun'
-require './Dojo/app/aluno'
-require './Dojo/app/gerenciar_aluno'
+require './app/aluno'
+require './app/gerenciar_aluno'
 
 class TestGerenciarAluno < Minitest::Test
 

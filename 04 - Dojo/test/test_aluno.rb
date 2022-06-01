@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require './Dojo/app/aluno'
+require './app/aluno'
 
 class TestAluno < Minitest::Test
 

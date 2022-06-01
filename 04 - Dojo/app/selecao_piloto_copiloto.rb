@@ -5,9 +5,8 @@ class SelecaoPilotoCopiloto
         @totalizador = 0
         @contador = 1
         @comparador = @lista_alunos.size
-        @escolhido = 0
+        @escolhido = nil
     end
-
 
     def selecionar
         if @lista_alunos.size < 2
