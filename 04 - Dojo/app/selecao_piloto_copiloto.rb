@@ -2,27 +2,29 @@ class SelecaoPilotoCopiloto
 
     def initialize(lista_alunos)
         @lista_alunos = lista_alunos
+        @totalizador = 0
+        @contador = 1
+        @comparador = @lista_alunos.size
+        @escolhido = 0
     end
+
 
     def selecionar
         if @lista_alunos.size < 2
             return 'Necessario minimo 2 pessoas'
         else
-            @escolhido = 0
-            @lista_escolhidos = []
-            @contador = 1
-            if @lista_escolhidos.size == @lista_alunos.size
-                @contador += 1
-                @lista_escolhidos = []
-            else
-                @lista_alunos.each do |alunos|
-                    if alunos.qtd_participacao < @contador
-                        @escolhido = alunos
-                    end
+            @lista_alunos.each do |alunos|
+                if alunos.qtd_participacao < @contador
+                    @escolhido = alunos
                 end
-                @escolhido.add_participacao
-                @lista_escolhidos << @escolhido
             end
+            @escolhido.add_participacao
+            @totalizador += 1
+            if @totalizador == @comparador
+                @contador += 1
+                @totalizador = 0
+            end
+            @escolhido.nome
         end
     end
 
