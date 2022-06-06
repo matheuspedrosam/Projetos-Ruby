@@ -1,6 +1,6 @@
 require 'minitest/autorun'
-require './app/aluno'
-require './app/gerenciar_aluno'
+require 'C:\Users\Matheus\Documents\RUBY ESTUDOS\Projetos em Ruby\04 - Dojo\app\aluno.rb'
+require 'C:\Users\Matheus\Documents\RUBY ESTUDOS\Projetos em Ruby\04 - Dojo\app\gerenciar_aluno.rb'
 
 class TestGerenciarAluno < Minitest::Test
 

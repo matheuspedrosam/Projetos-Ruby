@@ -1,9 +1,9 @@
 class Aluno
 
-    def initialize(nome, matricula, qtd_participacao = 0)
+    def initialize(nome, matricula)
       @nome = nome
       @matricula = matricula
-      @qtd_participacao = qtd_participacao
+      @qtd_participacao = 0
     end
   
     def nome
@@ -30,9 +30,7 @@ class Aluno
   
     def matricula_valida?
       numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-  
       if matricula.kind_of? String
-        
         array_matricula = matricula.split("")
         total = 0
         array_matricula.each do |elementos|
@@ -42,13 +40,13 @@ class Aluno
             end
           end
         end
-  
+
         if total == matricula.length
           return true
         else
           return false
         end
-  
+        
       else
         return false
       end
