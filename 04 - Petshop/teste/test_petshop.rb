@@ -7,16 +7,16 @@ class TestPetshop < Minitest::Test
     #expectativas de sucesso ->
 
     def test_validacao_cliente
-        cliente1 = Cliente.new('matheus', 'pitbull')
+        cliente1 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
         
         assert_equal 'pitbull', cliente1.pet
         assert_equal true, cliente1.pet_valido?
     end
 
     def test_petshop_agendar_e_saldo_a_receber
-        cliente1 = Cliente.new('matheus', 'pitbull')
-        cliente2 = Cliente.new('pedro', 'pointeringles')
-        cliente3 = Cliente.new('lucas', 'bulldog')
+        cliente1 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
+        cliente2 = Cliente.new('pedro', 'pointeringles', '12-09-2002', '(82) 9 88166281')
+        cliente3 = Cliente.new('lucas', 'bulldog', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
 
 
@@ -30,7 +30,7 @@ class TestPetshop < Minitest::Test
     end
     
     def test_petshop_mostrar_agendamentos
-        cliente1 = Cliente.new('pedro', 'pintcher')
+        cliente1 = Cliente.new('pedro', 'pintcher', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
         petshop.agendar(cliente1, 'banho', '11/05', 9)
 
@@ -42,8 +42,8 @@ class TestPetshop < Minitest::Test
     end
 
     def test_petshop_mostrar_agendamentos_com_mais_de_um_servico
-        cliente1 = Cliente.new('pedro', 'pintcher')
-        cliente2 = Cliente.new('matheus', 'pitbull')
+        cliente1 = Cliente.new('pedro', 'pintcher', '12-09-2002', '(82) 9 88166281')
+        cliente2 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
         petshop.agendar(cliente1, 'banho', '11/05', 10)
         petshop.agendar(cliente2, 'banho e tosa', '14/05', 9)
@@ -55,8 +55,8 @@ class TestPetshop < Minitest::Test
     end
 
     def test_consulta_de_agendamentos_pelo_cliente_ou_pela_data
-        cliente1 = Cliente.new('pedro', 'pintcher')
-        cliente2 = Cliente.new('matheus', 'pitbull')
+        cliente1 = Cliente.new('pedro', 'pintcher', '12-09-2002', '(82) 9 88166281')
+        cliente2 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
         petshop.agendar(cliente1, 'banho', '14/05', 10)
         petshop.agendar(cliente1, 'tosa', '14/05', 18)
@@ -72,8 +72,8 @@ class TestPetshop < Minitest::Test
 
     def test_consulta_de_agendamentos_data_de_hoje
         # vai dar falhar se testar em outro dia, pois tem que agendar alguem para o mesmo dia.
-        cliente1 = Cliente.new('matheus', 'pitbull')
-        cliente2 = Cliente.new('pedro', 'pintcher')
+        cliente1 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
+        cliente2 = Cliente.new('pedro', 'pintcher', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
         petshop.agendar(cliente2, 'banho e tosa', '20/05', 10) # estou testando nesse dia, (20/05/2022).
         petshop.agendar(cliente1, 'banho', '19/05', 11)
@@ -86,8 +86,8 @@ class TestPetshop < Minitest::Test
     end
 
     def test_remover_todos_agendamentos_do_cliente
-        cliente1 = Cliente.new('matheus', 'pitbull')
-        cliente2 = Cliente.new('pedro', 'pintcher')
+        cliente1 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
+        cliente2 = Cliente.new('pedro', 'pintcher', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
         petshop.agendar(cliente2, 'banho e tosa', '18/05', 10)
         petshop.agendar(cliente1, 'banho', '19/05', 10)
@@ -99,8 +99,8 @@ class TestPetshop < Minitest::Test
     end
 
     def test_remover_apenas_os_agendamentos_do_cliente_em_uma_data_especifica ## LEMBRETE: colocar hora tambem!
-        cliente1 = Cliente.new('matheus', 'pitbull')
-        cliente2 = Cliente.new('pedro', 'pintcher')
+        cliente1 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
+        cliente2 = Cliente.new('pedro', 'pintcher', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
         petshop.agendar(cliente2, 'banho e tosa', '18/05', 10)
         petshop.agendar(cliente1, 'banho', '19/05', 11)
@@ -114,8 +114,8 @@ class TestPetshop < Minitest::Test
     end
 
     def test_mostrar_de_forma_simplificada_os_agendamentos_do_dia
-        cliente1 = Cliente.new('matheus', 'pitbull')
-        cliente2 = Cliente.new('pedro', 'pintcher')
+        cliente1 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
+        cliente2 = Cliente.new('pedro', 'pintcher', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
         petshop.agendar(cliente1, 'banho', '20/05', 11)
         petshop.agendar(cliente2, 'banho e tosa', '23/05', 14)
@@ -126,14 +126,14 @@ class TestPetshop < Minitest::Test
     # # expectativas de falha ->
 
     def test_validacao_atributos_cliente
-        cliente1 = Cliente.new('matheus123', '31241')
+        cliente1 = Cliente.new('matheus123', '31241', '12-09-2002', '(82) 9 88166281')
 
         assert_equal false, cliente1.pet_valido?
         assert_equal false, cliente1.nome_valido?
     end
 
     def test_petshop_mostrar_agendamentos_com_pets_invalidos
-        cliente1 = Cliente.new('matheus', '12312')
+        cliente1 = Cliente.new('matheus', '12312', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
 
 
@@ -143,9 +143,9 @@ class TestPetshop < Minitest::Test
     end
 
     def test_agendar_horas_iguais_na_mesma_data
-        cliente1 = Cliente.new('matheus', 'pitbull')
-        cliente2 = Cliente.new('joao', 'pintcher')
-        cliente3 = Cliente.new('joaquim', 'papagaio')
+        cliente1 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
+        cliente2 = Cliente.new('joao', 'pintcher', '12-09-2002', '(82) 9 88166281')
+        cliente3 = Cliente.new('joaquim', 'papagaio', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
         petshop.agendar(cliente1, 'banho', '11/05', 10)
         petshop.agendar(cliente2, 'tosa', '11/05', 10)
@@ -159,7 +159,7 @@ class TestPetshop < Minitest::Test
     end
 
     def test_agendar_ao_meio_dia
-        cliente1 = Cliente.new('matheus', 'pitbull')
+        cliente1 = Cliente.new('matheus', 'pitbull', '12-09-2002', '(82) 9 88166281')
         petshop = Petshop.new
 
         assert_equal "Horario de Almoço", petshop.agendar(cliente1, 'banho', '11/05', 12)

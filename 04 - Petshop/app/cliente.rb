@@ -1,8 +1,10 @@
 class Cliente
 
-    def initialize(nome, pet)
-        @pet = pet
+    def initialize(nome, pet, data_nasc, telefone)
         @nome = nome
+        @pet = pet
+        @data_nasc = data_nasc
+        @telefone = telefone
     end
 
     def nome
@@ -35,6 +37,14 @@ class Cliente
         else
             return false
         end
+    end
+
+    def data_nasc
+        @data_nasc
+    end
+
+    def telefone
+        @telefone
     end
 
     def cliente_valido?
