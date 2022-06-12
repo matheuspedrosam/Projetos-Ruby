@@ -40,16 +40,3 @@ class SelecaoPilotoCopiloto
     end
 
 end
-
-
-    # ## Selecionar Piloto e Copiloto
-    # Função que recebe uma lista não vazia de alunos e dentre eles faz uma seleção de piloto e copiloto, priorizando os que tiverem menos participações, que farão parte do DOJO, em que após eles realizarem suas funções poderão voltar para a lista e novamente participar.
-
-    # ### Requisitos Obrigatórios**
-    
-    # - Recebe Lista Alunos (Nome e Quantidade participação)
-    # - Filtrar para chamar primeiro quem tem menos participação
-    # - Selecionar PILOTO primeiro. Caso não haja um prévio copiloto, selecionar da lista filtrada
-    # - Copiloto em seguida, selecionado da lista filtrada
-    # - Piloto só é chamado da lista na primeira vez de cada sessão, nas seguintes, o copiloto vira piloto
-    # - Terá que ter alunos, pelo menos 2 cadastrados, caso tenha menos não pode escolher, deverá ser informado uma mensagem de erro.
