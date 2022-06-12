@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require 'C:\Users\Matheus\Documents\RUBY ESTUDOS\Projetos em Ruby\04 - Dojo\app\timer.rb'
+require '.\app\timer.rb'
 
 class TestTimer < Minitest::Test
     def test_quando_passar_tempo_menor_que_3

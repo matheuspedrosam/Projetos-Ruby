@@ -1,7 +1,7 @@
 ---
-- :nome: ze
-  :matricula: '12124'
-  :participacao: 0
-- :nome: maria
-  :matricula: '243513'
-  :participacao: 0
+- :nome: Joao
+  :matricula: '223'
+  :participacao: 1
+- :nome: Ze
+  :matricula: '1234'
+  :participacao: 1
