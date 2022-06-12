@@ -1,4 +1,5 @@
 class Timer
+    
     def initialize(tempo)
         @tempo = tempo
     end

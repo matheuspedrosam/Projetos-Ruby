@@ -9,9 +9,16 @@ class Aluno
     def nome
       @nome
     end
+
+    def qtd_participacao
+      @qtd_participacao
+    end
+
+    def matricula
+      @matricula
+    end
   
     def nome_valido?
-  
       if nome.kind_of? String
         if nome.include?('0') || nome.include?('1') || nome.include?('2') || nome.include?('3') || nome.include?('4') ||nome.include?('5') || nome.include?('6') || nome.include?('7') || nome.include?('8') || nome.include?('9')
           return false
@@ -21,11 +28,6 @@ class Aluno
       else
         return false
       end
-      
-    end
-  
-    def matricula
-      @matricula
     end
   
     def matricula_valida?
@@ -52,12 +54,10 @@ class Aluno
       end
     end
 
-    def qtd_participacao
-      @qtd_participacao
-    end
-
-    def add_participacao
-      @qtd_participacao += 1
+    def aluno_valido?
+      if nome_valido? && matricula_valida?
+        true
+      end
     end
   
-  end
+end

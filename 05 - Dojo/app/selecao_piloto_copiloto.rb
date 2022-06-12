@@ -13,17 +13,29 @@ class SelecaoPilotoCopiloto
             return 'Necessario minimo 2 pessoas'
         else
             @lista_alunos.each do |alunos|
-                if alunos.qtd_participacao < @contador
+                if alunos[:participacao] < @contador
                     @escolhido = alunos
                 end
             end
-            @escolhido.add_participacao
+            @lista_alunos.each do |aluno|
+                if aluno == @escolhido
+                    @lista_alunos.delete_at(@lista_alunos.index(aluno))
+                    variavel = @escolhido[:participacao]
+                    variavel += 1
+                    @escolhido[:participacao] = variavel
+                    @lista_alunos << @escolhido
+                    break
+                end
+            end
+            File.open('banco/alunos.yml', 'w') do |arq|
+                arq.write(@lista_alunos.to_yaml)
+            end
             @totalizador += 1
             if @totalizador == @comparador
                 @contador += 1
                 @totalizador = 0
             end
-            @escolhido.nome
+            @escolhido[:nome]
         end
     end
 
