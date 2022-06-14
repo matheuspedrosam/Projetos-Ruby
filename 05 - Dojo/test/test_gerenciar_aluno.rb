@@ -5,9 +5,8 @@ require './app/gerenciar_aluno'
 class TestGerenciarAluno < Minitest::Test
 
     def test_cadastrar_quando_passa_aluno_valido
-
       matheus = Aluno.new('matheus', '00006')
-      joao = Aluno.new('joao', '00005')
+      joao = Aluno.new('joao', '00009')
       gerenciar_aluno = GerenciarAluno.new
       gerenciar_aluno.cadastrar(matheus)
 
@@ -16,12 +15,13 @@ class TestGerenciarAluno < Minitest::Test
    end
 
    def test_cadastrar_quando_passa_aluno_invalido
-
     joao = Aluno.new('joao123', 'mat1234')
+    matheus = Aluno.new('matheus', '00007')
     gerenciar_aluno = GerenciarAluno.new
+    gerenciar_aluno.cadastrar(matheus)
 
     assert_equal 'erro, cadastre um aluno com nome ou matricula valida!', gerenciar_aluno.cadastrar(joao)
-    assert_equal 2, gerenciar_aluno.alunos.size
+    assert_equal 1, gerenciar_aluno.alunos.size
 
    end
 

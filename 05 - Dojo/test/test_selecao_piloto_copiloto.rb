@@ -42,9 +42,9 @@ class TestSelecalPilotoCopiloto < Minitest::Test
     assert_equal 'Joao', spc.selecionar(lista_alunos)
     assert_equal 'Ze', spc.selecionar(lista_alunos)
     assert_equal [{:nome=>"Maria", :matricula=>"2255", :participacao=>1}, {:nome=>"Joao", :matricula=>"2231", :participacao=>1}, {:nome=>"Ze", :matricula=>"1235", :participacao=>1}], ga.alunos
-    assert_equal 1, ga.consultar_participacao("1235")
-    assert_equal 1, ga.consultar_participacao("2231")
-    assert_equal 1, ga.consultar_participacao("2255")
+    assert_equal 1, ga.consultar_participacao("1235") #consultando partcp. Ze
+    assert_equal 1, ga.consultar_participacao("2231") #consultando partcp. Joao
+    assert_equal 1, ga.consultar_participacao("2255") #consultando partcp. Maria
   end
 
   def test_selecionar_quando_todo_mundo_ja_tiver_jogado_uma_vez
@@ -64,8 +64,8 @@ class TestSelecalPilotoCopiloto < Minitest::Test
     assert_equal 'Ze', spc.selecionar(lista_alunos)
     assert_equal 'Joao', spc.selecionar(lista_alunos)
     assert_equal 'Maria', spc.selecionar(lista_alunos)
-    assert_equal 2, ga.consultar_participacao('2287')
-    assert_equal 2, ga.consultar_participacao('22973')
-    assert_equal 2, ga.consultar_participacao('22556')
+    assert_equal 2, ga.consultar_participacao('2287')  # Ze
+    assert_equal 2, ga.consultar_participacao('22973') # Joao 
+    assert_equal 2, ga.consultar_participacao('22556') # Maria
   end
 end

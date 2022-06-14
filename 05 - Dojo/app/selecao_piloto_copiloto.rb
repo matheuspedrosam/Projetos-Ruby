@@ -20,8 +20,7 @@ class SelecaoPilotoCopiloto
             lista_alunos.each do |aluno|
                 if aluno == @escolhido
                     lista_alunos.delete_at(lista_alunos.index(aluno))
-                    variavel = @escolhido[:participacao]
-                    variavel += 1
+                    variavel = @escolhido[:participacao] + 1
                     @escolhido[:participacao] = variavel
                     lista_alunos << @escolhido
                     break

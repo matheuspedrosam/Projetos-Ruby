@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require '.\app\timer.rb'
+require '.\Dojo\app\timer.rb'
 
 class TestTimer < Minitest::Test
     def test_quando_passar_tempo_menor_que_3
@@ -14,6 +14,7 @@ class TestTimer < Minitest::Test
     end
     
     def test_iniciar
+        skip "Teste demora 3 minutos"
         tempo = Timer.new(3)
         assert_equal "Seu Tempo Acabou!", tempo.iniciar
     end
