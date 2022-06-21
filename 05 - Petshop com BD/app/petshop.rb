@@ -72,7 +72,7 @@ class Petshop
         resultado.to_a
         resultado.each do |datas|
             if datas[0] == data
-                'já existe uma agendamento para esta data'
+                return 'já existe uma agendamento para esta data'
             end
         end
         servico = 0
