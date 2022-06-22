@@ -1,10 +1,20 @@
 class Cliente
 
-    def initialize(nome, pet, data_nasc, telefone)
+    def initialize(login, senha, nome, pet, data_nasc, telefone)
+        @login = login
+        @senha = senha
         @nome = nome
         @pet = pet
         @data_nasc = data_nasc
         @telefone = telefone
+    end
+
+    def login
+        @login
+    end
+
+    def senha
+        @senha
     end
 
     def nome

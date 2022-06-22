@@ -4,7 +4,34 @@ class Petshop
 
     def initialize
         @db = SQLite3::Database.open 'banco_petshop.db'
-        @db.results_as_hash = true
+        @db.results_as_hash = true    
+    end
+
+    def saldo
+        soma = 0
+        resultado = @db.execute 'select valor from agendamentos left join servicos on
+        agendamentos.id_servico = servicos.id_servico'
+        resultado.each do |valores|
+            soma += valores["valor"]
+        end
+        soma
+    end
+
+    def logar(login, senha = '*')
+        if senha == '*'
+            resultado = @db.execute 'select login from clientes where login=?', login
+            if resultado != []
+                return 'Já existe um Usuário com esse login'
+            end
+        else
+            resultado = @db.execute 'select nome from clientes where login=? and senha=?', login, senha
+            if resultado == []
+                'Usuario não cadastrado'
+            else
+                nome = resultado[0]
+                "Login efetuado com sucesso!, bem vindo #{nome["nome"]}"
+            end
+        end
     end
 
     def clientes(telefone = 'x')
@@ -39,7 +66,7 @@ class Petshop
                     return 'já existe um cliente com este telefone'
                 end
             end
-            @db.execute 'insert into clientes (nome, pet, data_nasc, telefone) values (?, ?, ?, ?)', cliente.nome, cliente.pet, cliente.data_nasc, cliente.telefone
+            @db.execute 'insert into clientes (login, senha, nome, pet, data_nasc, telefone) values (?, ?, ?, ?, ?, ?)', cliente.login, cliente.senha, cliente.nome, cliente.pet, cliente.data_nasc, cliente.telefone
             'cliente cadastrado com sucesso!'
         else
             'cliente invalido!'
@@ -48,33 +75,30 @@ class Petshop
 
     def agendamentos(data = '*')
         if data == '*'
-            resultado = @db.execute 'select nome, pet, telefone, descricao, ag_data from agendamentos
+            resultado = @db.execute 'select nome, pet, telefone, descricao, ag_data, hora from agendamentos
             left join clientes on agendamentos.id_cliente = clientes.id_cliente
             left join servicos on agendamentos.id_servico = servicos.id_servico'
             if resultado == []
-                'Não existe agendamentos'
+                return 'Não existe agendamentos'
             end
             agendamentos = resultado.to_a
         else
-            resultado = @db.execute 'select nome, pet, telefone, descricao, ag_data from agendamentos
+            resultado = @db.execute 'select nome, pet, telefone, descricao, ag_data, hora from agendamentos
             left join clientes on agendamentos.id_cliente = clientes.id_cliente
             left join servicos on agendamentos.id_servico = servicos.id_servico
             where ag_data = ?', data
             if resultado == []
-                'Não existe agendamentos'
+                return 'Não existe agendamentos'
             end
             agendamentos = resultado.to_a
         end
     end
 
-    def agendar(servico_desejado, data, telefone)
-        resultado = @db.execute 'select ag_data from agendamentos'
-        resultado.to_a
-        resultado.each do |datas|
-            if datas[0] == data
-                return 'já existe uma agendamento para esta data'
+    def agendar(servico_desejado, data, hora, telefone)
+        resultado = @db.execute 'select hora from agendamentos where ag_data=? and hora=?', data, hora
+            if resultado != []
+                return 'já existe uma agendamento para esta data, nesse horário'
             end
-        end
         servico = 0
         valor = 0
         if servico_desejado == 'banho'
@@ -85,25 +109,25 @@ class Petshop
             valor = 25
         elsif servico_desejado == 'banho e tosa'
             servico = 3
-            valor 38.25
+            valor = 38.25
         end
         cliente = @db.execute 'select * from clientes where telefone=?', telefone
         if cliente == []
-            'Não existe nenhum cliente com esse numero'
+            return 'Não existe nenhum cliente com esse numero'
         end
         cliente_certo = cliente[0]
         id = cliente_certo["id_cliente"]
-        @db.execute 'insert into agendamentos (id_cliente, ag_data, id_servico) values(?, ?, ?)', id, data, servico
+        @db.execute 'insert into agendamentos (id_cliente, ag_data, hora, id_servico) values(?, ?, ?, ?)', id, data, hora, servico
         "agendamento concluido com sucesso!, o valor foi de R$ #{valor},00"
     end
 
-    def remover_agendamento(data)
-        agendamento = @db.execute 'select ag_data from agendamentos where ag_data=?', data
+    def remover_agendamento(data, hora)
+        agendamento = @db.execute 'select ag_data from agendamentos where ag_data=? and hora=?', data, hora
         if agendamento != []
-            @db.execute 'delete from agendamentos where ag_data=?', data
+            @db.execute 'delete from agendamentos where ag_data=? and hora=?', data, hora
             'Agendamento Removido com sucesso!'
         else
-            'Não existe agendamento com essa data'
+            'Não existe agendamento com essa data e hora'
         end
     end
 
