@@ -1,6 +1,6 @@
 # require 'sqlite3'
 
-# db = SQLite3::Database.open './aula_10/app/banco_mercado.db'
+# db = SQLite3::Database.open './app/banco_mercado.db'
 
 # db.execute 'CREATE TABLE sacoles(
 #   id integer primary key,

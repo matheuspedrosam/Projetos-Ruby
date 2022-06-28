@@ -3,7 +3,7 @@ require 'sqlite3'
 class Mercado
 
     def initialize
-        @db = SQLite3::Database.open './aula_10/app/banco_mercado.db'
+        @db = SQLite3::Database.open './app/banco_mercado.db'
         @db.results_as_hash = true 
     end
 

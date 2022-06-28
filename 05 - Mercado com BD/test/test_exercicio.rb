@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require './aula_10/app/mercado.rb'
+require './app/mercado.rb'
 
 class TestExercicioMercadinho < Minitest::Test
 
